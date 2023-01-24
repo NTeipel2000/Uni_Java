@@ -1,12 +1,11 @@
 public class Main {
 
     public static void main(String[] args) {
-        Field field = new Field(4);
-        field.fillField();
-        field.solve(4);
 
-        System.out.println(field.toString());
-        System.out.println(field.isSolved());
+        Lager lager = new Lager();
+        DataClass.fillData(lager);
+        System.out.println(lager.toString());
+
     }
 
 }
