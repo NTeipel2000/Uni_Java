@@ -5,10 +5,17 @@ public class Lager {
 
     private List<Artikel> artikelList;
 
+    /**
+     * Constructor
+     */
     public Lager() {
         this.artikelList = new ArrayList<>();
     }
 
+    /**
+     * Adds the given Artikel to the artikelList attribute
+     * @param artikel
+     */
     public void addArtikel(Artikel artikel){
         for (Artikel a : artikelList) {
             if (artikel.getArtikelnummer().equalsIgnoreCase(a.getArtikelnummer())) {
@@ -19,13 +26,29 @@ public class Lager {
         artikelList.add(artikel);
     }
 
+    /**
+     * Removes Artikel from List / decrements anzahl
+     * @param artikelnummer
+     * @param anzahl
+     */
     public void removeArtikel(String artikelnummer, int anzahl){
         Artikel a = searchArtikel(artikelnummer);
+        if (a == null){
+            System.out.println("Artikel nicht vorhanden!");
+            return;
+        }
         if(a.getAnzahl() > anzahl) a.setAnzahl(a.getAnzahl() - anzahl);
         else if(a.getAnzahl() == anzahl) artikelList.remove(a);
         else System.out.println("Nicht genügend Artikel auf Lager! (Lager: "+ a.getAnzahl() +")");
     }
 
+
+    /**
+     * Search Artikel by Artikelnummer
+     * @param artikelnummer
+     * @return Artikel
+     * @see Artikel
+     */
     public Artikel searchArtikel(String artikelnummer){
         for(Artikel a : artikelList){
             if(a.getArtikelnummer().equalsIgnoreCase(artikelnummer))
@@ -34,14 +57,11 @@ public class Lager {
         return null;
     }
 
-    public List<Artikel> getArtikelList() {
-        return artikelList;
-    }
-
-    public void setArtikelList(List<Artikel> artikelList) {
-        this.artikelList = artikelList;
-    }
-
+    /**
+     * toString-Method
+     * @return String
+     * @see StringBuilder
+     */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
